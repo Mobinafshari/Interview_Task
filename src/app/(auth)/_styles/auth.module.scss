@@ -1,0 +1,14 @@
+.wrapper {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  &__login {
+    width: 20vw;
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: #fff;
+    border-radius: 8px;
+  }
+}
