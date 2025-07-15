@@ -1,9 +1,10 @@
 .wrapper {
   display: grid;
   place-items: center;
-  height: 100vh;
+  height: 100%;
   &__login {
-    width: 20vw;
+    width: 30vw;
+    min-width: 250px;
     padding: 32px 16px;
     display: flex;
     flex-direction: column;

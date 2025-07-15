@@ -1,6 +1,9 @@
-import type { Metadata } from "next";
+"use client";
 import { Inter, Geist } from "next/font/google";
 import "@/styles/_base.scss";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@/lib/reactQuery";
+import { UserProvider } from "@/context/userContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,11 +15,6 @@ const InterFont = Inter({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Interview Task",
-  description: "...",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${InterFont.variable} ${geistSans.variable}`}>
-        {children}
+        <QueryClientProvider client={queryClient}>
+          <UserProvider>{children}</UserProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );

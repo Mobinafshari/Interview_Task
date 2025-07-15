@@ -1,9 +1,10 @@
-import React from 'react'
-
+import styles from "../_styles/dashboard.module.scss";
 function page() {
   return (
-    <div>page</div>
-  )
+    <div className={styles.dashboard}>
+      <h1>Welcome To The Dashboard Page</h1>
+    </div>
+  );
 }
 
-export default page
+export default page;

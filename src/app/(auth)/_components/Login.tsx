@@ -7,8 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import LoginSchema, {
   LoginPayloadType,
 } from "../_validations/login.validation";
+import useGetRandomUser from "../_hooks/useGetRandomUser";
 
 function Login() {
+  const { getUser, loadingUser } = useGetRandomUser();
   const {
     register,
     formState: { errors },
@@ -16,8 +18,12 @@ function Login() {
   } = useForm<LoginPayloadType>({
     resolver: zodResolver(LoginSchema),
   });
-  const onSubmit = (values: LoginPayloadType) => {
-    console.log(values);
+  const onSubmit = async (values: LoginPayloadType) => {
+    try {
+      await getUser();
+    } catch (error) {
+      // show toast
+    }
   };
   return (
     <form
@@ -31,7 +37,7 @@ function Login() {
         error={!!errors?.mobile}
         errorText={errors.mobile?.message}
       />
-      <Button>Submit</Button>
+      <Button isLoading={loadingUser}>Submit</Button>
     </form>
   );
 }
