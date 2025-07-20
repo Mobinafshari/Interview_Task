@@ -1,14 +1,14 @@
 "use client";
 import { useUser } from "@/context/userContext";
 import { redirect, RedirectType } from "next/navigation";
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useLayoutEffect } from "react";
 type Props = {
   children: ReactNode;
 };
 
 function AuthChecker({ children }: Props) {
   const { user } = useUser();
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!user) {
       redirect("auth", RedirectType.replace);
     }

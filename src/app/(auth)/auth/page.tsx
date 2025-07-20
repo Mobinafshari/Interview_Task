@@ -3,11 +3,11 @@ import { useUser } from "@/context/userContext";
 import Login from "../_components/Login";
 import styles from "../_styles/auth.module.scss";
 import { redirect, RedirectType } from "next/navigation";
-import { useEffect } from "react";
+import {  useLayoutEffect } from "react";
 
 function Auth() {
   const { user } = useUser();
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (user) {
       redirect("dashboard", RedirectType.replace);
     }
